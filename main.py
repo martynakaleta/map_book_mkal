@@ -11,7 +11,7 @@ if __name__ == '__main__':
             print('0. zakończ program')
             print('1. wyświetl znajomych')
             print('2. dodaj znajomych')
-            print('3. dodaj znajomego')
+            print('3. wyszukaj znajomego')
             print('4. usuń znajomego')
             print('5. zaktualizuj znajomego')
             print('6. wyświetl mapę dla każdego użytkownika')

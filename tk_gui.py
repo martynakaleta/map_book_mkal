@@ -1,7 +1,31 @@
 from tkinter import *
 
-def prosta_funkcja():
-    print("Prosta funkcja.")
+user_list=[]
+class User:
+    def __init__(self,imie,nazwisko,posty,miejscowosc):
+        self.imie=imie
+        self.nazwisko=nazwisko
+        self.posty=posty
+        self.miejscowosc=miejscowosc
+
+
+def create_user()->None:
+    imie=entry_imie.get()
+    nazwisko=entry_nazwisko.get()
+    posty=entry_posty.get()
+    miejscowosc=entry_miejscowosc.get()
+    uzytkownik=User(imie,nazwisko,posty,miejscowosc)
+
+    user_list.append(uzytkownik)
+    # print(user_list)
+    show_user()
+def show_user()->None:
+    listbox_lista_uzytkownikow.delete(0,END)
+    for idx,user in enumerate (user_list):
+        print(idx,user.nazwisko,user.posty,user.miejscowosc)
+        listbox_lista_uzytkownikow.insert(idx,f'{user.imie} {user.nazwisko}, {user.posty}, {user.miejscowosc}')
+
+
 
 root=Tk()
 root.geometry('800x700')
@@ -20,8 +44,7 @@ ramka_pokaz_szczegoly.grid(row=1, column=0, columnspan=2, padx=50, pady=50)
 
 
 # ramka lista uzytkownikow
-
-label_lista_uzytkownikow=Label(ramka_lista_uzytkownikow, text='Lista obiektów')
+label_lista_uzytkownikow=Label(ramka_lista_uzytkownikow,text='Lista uzytkownikow:')
 listbox_lista_uzytkownikow=Listbox(ramka_lista_uzytkownikow,width=30)
 button_pokaz_szczegoly=Button(ramka_lista_uzytkownikow,text='Pokaż szczegóły')
 button_edytuj_uzytkownika=Button(ramka_lista_uzytkownikow,text='Edytuj')
@@ -35,15 +58,16 @@ button_usun_uzytkownika.grid(row=2, column=2)
 
 # ramka_formularz
 label_formularz=Label(ramka_formularz, text='Formularz edycji i dodawania')
-label_imie=Label(ramka_formularz, text='Imie')
+label_imie=Label(ramka_formularz, text='Imię')
 label_nazwisko=Label(ramka_formularz, text='Nazwisko')
 label_posty=Label(ramka_formularz, text='Posty')
 label_miejscowosc=Label(ramka_formularz, text='Miejscowosc')
+
 entry_imie=Entry(ramka_formularz)
 entry_nazwisko=Entry(ramka_formularz)
 entry_posty=Entry(ramka_formularz)
 entry_miejscowosc=Entry(ramka_formularz)
-button_dodaj_uzytkownika=Button(ramka_formularz,text='Dodaj')
+button_dodaj_uzytkownika=Button(ramka_formularz,text='Dodaj',command=create_user)
 
 
 
